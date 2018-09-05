@@ -1,0 +1,20 @@
+A. Perform ANOVA test on the discriminant analysis scores of nuclear localization signals of both nuclear
+and non-nuclear proteins by class variables (Target).
+Ans: library(MASS)
+fit <- lda(G ~ x1 + x2 + x3, data=mydata, 
+   na.action="na.omit", CV=TRUE)
+ct <- table(mydata$G, fit$class)
+diag(prop.table(ct, 1))
+sum(diag(prop.table(ct)))
+it <- qda(G ~ x1 + x2 + x3 + x4, data=na.omit(mydata),
+  prior=c(1,1,1)/3))
+plot(fit)
+
+B.Which class is significantly different from others?
+Ans: read.csv(file="data/pvc.csv", row.names=1)
+dat <- read.csv(file="data/pvc.csv", row.names=1)
+mat <- as.matrix(dat)
+class(mat)
+mat["Resin4","Bob"]
+resin_1 <- mat[1, ]
+max(resin_1)
